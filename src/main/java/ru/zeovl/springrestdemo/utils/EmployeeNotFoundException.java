@@ -2,7 +2,7 @@ package ru.zeovl.springrestdemo.utils;
 
 public class EmployeeNotFoundException extends RuntimeException {
 
-    private int requestedEmployeeId;
+    private final int requestedEmployeeId;
 
     public EmployeeNotFoundException(int requestedEmployeeId) {
         this.requestedEmployeeId = requestedEmployeeId;

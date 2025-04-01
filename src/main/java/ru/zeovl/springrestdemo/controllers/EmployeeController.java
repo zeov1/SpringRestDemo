@@ -7,7 +7,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import ru.zeovl.springrestdemo.models.Employee;
 import ru.zeovl.springrestdemo.services.EmployeeService;
-import ru.zeovl.springrestdemo.utils.EmployeeErrorResponse;
+import ru.zeovl.springrestdemo.utils.EmployeeNotFoundResponse;
 import ru.zeovl.springrestdemo.utils.EmployeeNotFoundException;
 import ru.zeovl.springrestdemo.utils.InvalidEmployeeResponse;
 import ru.zeovl.springrestdemo.utils.InvalidEmployeeException;
@@ -63,11 +63,11 @@ public class EmployeeController {
     }
 
     @ExceptionHandler
-    ResponseEntity<EmployeeErrorResponse> handleException(EmployeeNotFoundException e) {
-        EmployeeErrorResponse r = new EmployeeErrorResponse(
+    ResponseEntity<EmployeeNotFoundResponse> handleException(EmployeeNotFoundException e) {
+        EmployeeNotFoundResponse r = new EmployeeNotFoundResponse(
                 "Employee " + e.getRequestedEmployeeId() + " not found!",
                 System.currentTimeMillis()
         );
-        return new ResponseEntity<EmployeeErrorResponse>(r, HttpStatus.NOT_FOUND);
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(r);
     }
 }
