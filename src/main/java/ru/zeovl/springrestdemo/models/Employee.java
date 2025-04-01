@@ -42,16 +42,9 @@ public class Employee {
     private LocalDate dateHired;
 
     public Employee() {
-    }
-
-    public Employee(int id, String firstName, String lastName, LocalDate dateOfBirth, String education, String address, LocalDate dateHired) {
-        this.id = id;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.dateOfBirth = dateOfBirth;
-        this.education = education;
-        this.address = address;
-        this.dateHired = dateHired;
+        this.education = "";
+        this.address = "";
+        this.dateHired = LocalDate.now();
     }
 
     public int getId() {
@@ -62,51 +55,51 @@ public class Employee {
         this.id = id;
     }
 
-    public @NotNull @Size(min = 2, max = 100) String getFirstName() {
+    public String getFirstName() {
         return firstName;
     }
 
-    public void setFirstName(@NotNull @Size(min = 2, max = 100) String firstName) {
+    public void setFirstName(String firstName) {
         this.firstName = firstName;
     }
 
-    public @NotNull @Size(min = 2, max = 100) String getLastName() {
+    public String getLastName() {
         return lastName;
     }
 
-    public void setLastName(@NotNull @Size(min = 2, max = 100) String lastName) {
+    public void setLastName(String lastName) {
         this.lastName = lastName;
     }
 
-    public @NotNull LocalDate getDateOfBirth() {
+    public LocalDate getDateOfBirth() {
         return dateOfBirth;
     }
 
-    public void setDateOfBirth(@NotNull LocalDate dateOfBirth) {
+    public void setDateOfBirth(LocalDate dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
     }
 
-    public @NotNull String getEducation() {
+    public String getEducation() {
         return education;
     }
 
-    public void setEducation(@NotNull String education) {
+    public void setEducation(String education) {
         this.education = education;
     }
 
-    public @NotNull String getAddress() {
+    public String getAddress() {
         return address;
     }
 
-    public void setAddress(@NotNull String address) {
+    public void setAddress(String address) {
         this.address = address;
     }
 
-    public @NotNull LocalDate getDateHired() {
+    public LocalDate getDateHired() {
         return dateHired;
     }
 
-    public void setDateHired(@NotNull LocalDate dateHired) {
+    public void setDateHired(LocalDate dateHired) {
         this.dateHired = dateHired;
     }
 
