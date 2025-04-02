@@ -25,3 +25,6 @@ VALUES ('Alexander', 'Krivintsov', '27.02.2004', '15.03.2024');
 INSERT INTO employees(first_name, last_name, date_of_birth, date_hired)
 VALUES ('Dmitry', 'Kamzychakov', '15.03.2004', '17.07.2017');
 
+ALTER TABLE employees
+    ADD COLUMN created_at TIMESTAMP NOT NULL DEFAULT now(),
+    ADD COLUMN created_by VARCHAR NOT NULL DEFAULT '';
