@@ -9,6 +9,7 @@ import ru.zeovl.springrestdemo.repositories.EmployeeRepository;
 import ru.zeovl.springrestdemo.utils.EmployeeNotFoundException;
 import ru.zeovl.springrestdemo.utils.InvalidEmployeeException;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -28,11 +29,9 @@ public class EmployeeService {
 
     public Employee findById(int id) throws EmployeeNotFoundException {
         Optional<Employee> employee = employeeRepository.findById(id);
-        if (employee.isPresent()) {
-            return employee.get();
-        } else {
-            throw new EmployeeNotFoundException(id);
-        }
+        return employee.orElseThrow(
+                () -> new EmployeeNotFoundException(id)
+        );
     }
 
     @Transactional
@@ -48,6 +47,10 @@ public class EmployeeService {
             }
             throw new InvalidEmployeeException(message.toString());
         }
+
+        employee.setCreatedAt(LocalDate.now());
+        employee.setCreatedBy("UNKNOWN"); // TODO необходимо создать пользователей
+
         return employeeRepository.save(employee);
     }
 }
