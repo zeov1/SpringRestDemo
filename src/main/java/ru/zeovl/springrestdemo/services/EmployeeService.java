@@ -82,4 +82,12 @@ public class EmployeeService {
 
         return employeeRepository.save(employeeToBeUpdated);
     }
+
+    @Transactional
+    public void delete(int id) throws EmployeeNotFoundException {
+        if (!employeeRepository.existsById(id))
+            throw new EmployeeNotFoundException(id);
+
+        employeeRepository.deleteById(id);
+    }
 }
