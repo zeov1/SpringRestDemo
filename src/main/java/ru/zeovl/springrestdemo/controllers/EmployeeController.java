@@ -69,6 +69,12 @@ public class EmployeeController {
 
     // DELETE
 
+    @DeleteMapping("/{id}")
+    ResponseEntity<Void> deleteEmployee(@PathVariable("id") int id) throws EmployeeNotFoundException {
+        employeeService.delete(id);
+        return ResponseEntity.noContent().build();
+    }
+
     // Exceptions handling
 
     @ExceptionHandler
