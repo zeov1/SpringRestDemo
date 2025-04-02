@@ -41,10 +41,15 @@ public class Employee {
     @Column(name = "date_hired")
     private LocalDate dateHired;
 
+    @NotNull
+    @Column(name = "created_at")
+    private LocalDate createdAt;
+
+    @NotNull
+    @Column(name = "created_by")
+    private String createdBy;
+
     public Employee() {
-        this.education = "";
-        this.address = "";
-        this.dateHired = LocalDate.now();
     }
 
     public int getId() {
@@ -101,6 +106,22 @@ public class Employee {
 
     public void setDateHired(LocalDate dateHired) {
         this.dateHired = dateHired;
+    }
+
+    public String getCreatedBy() {
+        return createdBy;
+    }
+
+    public void setCreatedBy(String createdBy) {
+        this.createdBy = createdBy;
+    }
+
+    public LocalDate getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(LocalDate createdAt) {
+        this.createdAt = createdAt;
     }
 
     @Override
