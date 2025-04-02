@@ -56,6 +56,17 @@ public class EmployeeController {
 
     // UPDATE
 
+    @PutMapping("/{id}")
+    ResponseEntity<EmployeeDTO> updateEmployee(
+            @PathVariable("id") int id, @RequestBody @Valid EmployeeDTO employeeDTO,
+            BindingResult bindingResult) throws EmployeeNotFoundException, InvalidEmployeeException {
+
+        Employee employee = convertToEmployee(employeeDTO);
+        Employee updatedEmployee = employeeService.update(id, employee, bindingResult);
+        EmployeeDTO updatedEmployeeDTO = convertToDTO(updatedEmployee);
+        return ResponseEntity.ok(updatedEmployeeDTO);
+    }
+
     // DELETE
 
     // Exceptions handling

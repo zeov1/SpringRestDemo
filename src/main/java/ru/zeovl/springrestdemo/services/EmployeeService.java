@@ -53,4 +53,33 @@ public class EmployeeService {
 
         return employeeRepository.save(employee);
     }
+
+    @Transactional
+    public Employee update(int id, Employee employee, BindingResult bindingResult) throws InvalidEmployeeException {
+
+        Employee employeeToBeUpdated = employeeRepository.findById(id).orElseThrow(
+                () -> new EmployeeNotFoundException(id)
+        );
+
+        if (bindingResult.hasErrors()) {
+            StringBuilder message = new StringBuilder();
+            for (FieldError error : bindingResult.getFieldErrors()) {
+                message
+                        .append(error.getField())
+                        .append(": ")
+                        .append(error.getDefaultMessage())
+                        .append("; ");
+            }
+            throw new InvalidEmployeeException(message.toString());
+        }
+
+        employeeToBeUpdated.setFirstName(employee.getFirstName());
+        employeeToBeUpdated.setLastName(employee.getLastName());
+        employeeToBeUpdated.setDateOfBirth(employee.getDateOfBirth());
+        employeeToBeUpdated.setAddress(employee.getAddress());
+        employeeToBeUpdated.setEducation(employee.getEducation());
+        employeeToBeUpdated.setDateHired(employee.getDateHired());
+
+        return employeeRepository.save(employeeToBeUpdated);
+    }
 }
